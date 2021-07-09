@@ -31,10 +31,11 @@ public class Soundex {
 		return ret.concat("0".repeat(4 - ret.length()));
 	}
 	
-	/** Retrieves the corresponding byte value for a character. This does not check for characters that are not capital alphabetical.
+	/** Retrieves the corresponding byte value for a character.
 	 * 	@param c The character to get
-	 *  @return The byte value for a character or either an invalid value or an error if a non-word character was passed.*/
+	 *  @return The byte value for a character or -1 for non-word or lowercase characters.*/
 	private static byte getVal(char c) {
+		if (!Character.isAlphabetic(c) || Character.isLowerCase(c)) return -1;
 		return TABLE[(int)c%65];
 	}
 	
